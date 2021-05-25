@@ -14,6 +14,7 @@ database = Database("member.db")
 def start_command(update, context):
     user_id = update.message.from_user.id
     username = update.message.from_user.username
+    user = database.get_user_by_chat_id(user_id)
     if not user:
         database.create_user(user_id, username, datetime.now().strftime("%d-%m-%Y %H:%M:%S"))
     button = [
